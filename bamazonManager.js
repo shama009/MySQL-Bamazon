@@ -54,7 +54,13 @@ function manageInventory() {
 }
 // list every available item: the item IDs, names, prices, and quantities.
 function viewProducts() {
-
+    var query = "Select item_id, product_name, price, stock_quantity FROM products";
+    connection.query(query, function (err, result) {
+        if (err) throw err;
+        for (var i = 0; i < result.length; i++) {
+            console.log("Item_ID: " + result[i].item_id + " || Product: " + result[i].product_name + " || Price: " + result[i].price + " || Quantity: " + result[i].stock_quantity);
+        }
+    });
 }
 //list all items with an inventory count lower than five.
 function viewLowInventory() {
