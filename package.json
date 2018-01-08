@@ -1,0 +1,23 @@
+{
+  "name": "mysql-bamazon",
+  "version": "1.0.0",
+  "description": "Bamazon application to maintain inventory of products using mysql DB",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shama009/MySQL-Bamazon.git"
+  },
+  "author": "Shama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shama009/MySQL-Bamazon/issues"
+  },
+  "homepage": "https://github.com/shama009/MySQL-Bamazon#readme",
+  "dependencies": {
+    "inquirer": "^4.0.2",
+    "mysql": "^2.15.0"
+  }
+}
