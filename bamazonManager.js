@@ -60,11 +60,19 @@ function viewProducts() {
         for (var i = 0; i < result.length; i++) {
             console.log("Item_ID: " + result[i].item_id + " || Product: " + result[i].product_name + " || Price: " + result[i].price + " || Quantity: " + result[i].stock_quantity);
         }
+        connection.end();
     });
 }
 //list all items with an inventory count lower than five.
 function viewLowInventory() {
-
+    var query = "Select item_id, product_name, price, stock_quantity FROM products WHERE stock_quantity < 5";
+    connection.query(query, function (err, result) {
+        if (err) throw err;
+        for (var i = 0; i < result.length; i++) {
+            console.log("Item_ID: " + result[i].item_id + " || Product: " + result[i].product_name + " || Price: " + result[i].price + " || Quantity: " + result[i].stock_quantity);
+        }
+        connection.end();
+    });
 }
 
 // display a prompt that will let the manager "add more" of any item currently in the store.
