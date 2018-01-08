@@ -66,68 +66,70 @@ function viewLowInventory() {
 // display a prompt that will let the manager "add more" of any item currently in the store.
 function addToInventory() {
     inquirer
-    .prompt([
-        {
-            name: "id",
-            type: "input",
-            message: "Please provide product ID to add more inventory?"
-        },
-        {
-            name: "quantity",
-            type: "input",
-            message: "How many items would you like to add to inventory?"
-        }
-    ])
-    .then(function (answer) {
-        var selectquery = "SELECT stock_quantity, price FROM products WHERE item_id = ?";
-        connection.query(selectquery, [answer.id], function (err1, res1) {
-            if (err1) throw err1;
-            var stockAvailable = parseInt(res1[0].stock_quantity);
-            var updatedStock = stockAvailable + parseInt(answer.quantity);
-            var updateQuery = "UPDATE products SET stock_quantity = ? WHERE item_ID =?";
-            connection.query(updateQuery, [updatedStock, answer.id], function (err2, res2) {
-                if (err2) throw err2;
-                console.log("updated Inventory");
+        .prompt([
+            {
+                name: "id",
+                type: "input",
+                message: "Please provide product ID to add more inventory?"
+            },
+            {
+                name: "quantity",
+                type: "input",
+                message: "How many items would you like to add to inventory?"
+            }
+        ])
+        .then(function (answer) {
+            var selectquery = "SELECT stock_quantity, price FROM products WHERE item_id = ?";
+            connection.query(selectquery, [answer.id], function (err1, res1) {
+                if (err1) throw err1;
+                var stockAvailable = parseInt(res1[0].stock_quantity);
+                var updatedStock = stockAvailable + parseInt(answer.quantity);
+                var updateQuery = "UPDATE products SET stock_quantity = ? WHERE item_ID =?";
+                connection.query(updateQuery, [updatedStock, answer.id], function (err2, res2) {
+                    if (err2) throw err2;
+                    console.log("updated Inventory");
+                });
+                connection.end();
             });
-            connection.end();
-        });
 
-    });
+        });
 }
 // allow the manager to add a completely new product to the store.
 function addProduct() {
     inquirer
-    .prompt([
-        {
-            name: "product",
-            type: "input",
-            message: "Product name?"
-        },
-        {
-            name: "department",
-            type: "input",
-            message: "Department name?"
-        },
-        {
-            name: "price",
-            type: "input",
-            message: "Price?"
-        },
-        {
-            name: "quantity",
-            type: "input",
-            message: "Quantity?"
-        }
-    ])
-    .then(function (answer) {
-        var insertQuery = "INSERT INTO products SET ?";
-        connection.query(insertQuery, {product_name : answer.product, 
-                                       department_name : answer.product, 
-                                       price : answer.product, 
-                                       stock_quantity : answer.product}, function(err, res){
-                                           if (err) throw err;
+        .prompt([
+            {
+                name: "product",
+                type: "input",
+                message: "Product name?"
+            },
+            {
+                name: "department",
+                type: "input",
+                message: "Department name?"
+            },
+            {
+                name: "price",
+                type: "input",
+                message: "Price?"
+            },
+            {
+                name: "quantity",
+                type: "input",
+                message: "Quantity?"
+            }
+        ])
+        .then(function (answer) {
+            var insertQuery = "INSERT INTO products SET ?";
+            connection.query(insertQuery, {
+                product_name: answer.product,
+                department_name: answer.department,
+                price: parseFloat(answer.price),
+                stock_quantity: parseInt(answer.quantity)
+            }, function (err, res) {
+                if (err) throw err;
+                console.log("New Product added!");
+            });
 
         });
-
-});
 }
