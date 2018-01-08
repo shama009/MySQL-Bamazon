@@ -13,3 +13,59 @@ var connection = mysql.createConnection({
     database: "bamazonDB"
 });
 
+connection.connect(function (err) {
+    if (err) throw err;
+    manageInventory();
+});
+
+function manageInventory() {
+    inquirer
+        .prompt({
+            name: "action",
+            type: "list",
+            message: "What would you like to do?",
+            choices: [
+                "View Products for Sale",
+                "View Low Inventory",
+                "Add to Inventory",
+                "Add New Product"
+            ]
+        })
+        .then(function (answer) {
+            switch (answer.action) {
+                case "View Products for Sale":
+                    viewProducts();
+                    break;
+
+                case "View Low Inventory":
+                    viewLowInventory();
+                    break;
+
+                case "Add to Inventory":
+                    addToInventory();
+                    break;
+
+                case "Add New Product":
+                    addProduct();
+                    break;
+            }
+        });
+
+}
+// list every available item: the item IDs, names, prices, and quantities.
+function viewProducts() {
+
+}
+//list all items with an inventory count lower than five.
+function viewLowInventory() {
+
+}
+
+// display a prompt that will let the manager "add more" of any item currently in the store.
+function addToInventory() {
+
+}
+// allow the manager to add a completely new product to the store.
+function addProduct() {
+
+}
