@@ -77,7 +77,34 @@ function viewLowInventory() {
 
 // display a prompt that will let the manager "add more" of any item currently in the store.
 function addToInventory() {
+    inquirer
+    .prompt([
+        {
+            name: "id",
+            type: "input",
+            message: "Please provide product ID to add more inventory?"
+        },
+        {
+            name: "quantity",
+            type: "input",
+            message: "How many items would you like to add to inventory?"
+        }
+    ])
+    .then(function (answer) {
+        var selectquery = "SELECT stock_quantity, price FROM products WHERE item_id = ?";
+        connection.query(selectquery, [answer.id], function (err1, res1) {
+            if (err1) throw err1;
+            var stockAvailable = parseInt(res1[0].stock_quantity);
+            var updatedStock = stockAvailable + parseInt(answer.quantity);
+            var updateQuery = "UPDATE products SET stock_quantity = ? WHERE item_ID =?";
+            connection.query(updateQuery, [updatedStock, answer.id], function (err2, res2) {
+                if (err2) throw err2;
+                console.log("updated Inventory");
+            });
+            connection.end();
+        });
 
+    });
 }
 // allow the manager to add a completely new product to the store.
 function addProduct() {
