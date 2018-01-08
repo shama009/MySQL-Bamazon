@@ -1,17 +1,5 @@
-var mysql = require("mysql");
+var connection = require("./DBConnection");
 var inquirer = require("inquirer");
-
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-
-    // Your username
-    user: "root",
-
-    // Your password
-    password: "mysql123",
-    database: "bamazonDB"
-});
 
 connection.connect(function (err) {
     if (err) throw err;
@@ -108,5 +96,38 @@ function addToInventory() {
 }
 // allow the manager to add a completely new product to the store.
 function addProduct() {
+    inquirer
+    .prompt([
+        {
+            name: "product",
+            type: "input",
+            message: "Product name?"
+        },
+        {
+            name: "department",
+            type: "input",
+            message: "Department name?"
+        },
+        {
+            name: "price",
+            type: "input",
+            message: "Price?"
+        },
+        {
+            name: "quantity",
+            type: "input",
+            message: "Quantity?"
+        }
+    ])
+    .then(function (answer) {
+        var insertQuery = "INSERT INTO products SET ?";
+        connection.query(insertQuery, {product_name : answer.product, 
+                                       department_name : answer.product, 
+                                       price : answer.product, 
+                                       stock_quantity : answer.product}, function(err, res){
+                                           if (err) throw err;
 
+        });
+
+});
 }
