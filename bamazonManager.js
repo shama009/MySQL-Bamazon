@@ -72,12 +72,12 @@ function addToInventory() {
             {
                 name: "id",
                 type: "input",
-                message: "Please provide product ID to add more inventory?"
+                message: "Please provide product ID to add more inventory?",
             },
             {
                 name: "quantity",
                 type: "input",
-                message: "How many items would you like to add to inventory?"
+                message: "How many items would you like to add to inventory?",
             }
         ])
         .then(function (answer) {
@@ -103,22 +103,22 @@ function addProduct() {
             {
                 name: "product",
                 type: "input",
-                message: "Product name?"
+                message: "Product name?",
             },
             {
                 name: "department",
                 type: "input",
-                message: "Department name?"
+                message: "Department name?",
             },
             {
                 name: "price",
                 type: "input",
-                message: "Price?"
+                message: "Price?",
             },
             {
                 name: "quantity",
                 type: "input",
-                message: "Quantity?"
+                message: "Quantity?",
             }
         ])
         .then(function (answer) {

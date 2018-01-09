@@ -24,3 +24,6 @@ INSERT INTO products (product_name, department_name, price, stock_quantity) VALU
 INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("ps4 console", "Electronics", 399, 300);
 
 SELECT * FROM products;
+
+-- updated record to test low inventory scenario
+UPDATE products SET stock_quantity = 2 WHERE product_name = 'iPhonex';
