@@ -23,12 +23,30 @@ function buyProducts() {
             {
                 name: "id",
                 type: "input",
-                message: "What is the ID of the product you would like to buy?"
+                message: "Enter the ID of the product you would like to buy or Q to quit?",
+                validate: function(value) {
+                    if(value == "Q" || value == "q") {
+                        return "GoodBye!!";
+                    }
+                    else if (isNaN(value) === false) {
+                      return true;
+                    }
+                    else {
+                        return "Please enter valid ID";
+                    }
+                    
+                  }
             },
             {
                 name: "quantity",
                 type: "input",
-                message: "How many items would you like to buy?"
+                message: "How many items would you like to buy?",
+                validate: function(value) {
+                    if (isNaN(value) === false) {
+                      return true;
+                    }
+                    return "Please enter valid quantity";
+                  }
             }
         ])
         .then(function (answer) {
