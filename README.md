@@ -24,4 +24,4 @@ Amazon-like storefront with the MySQL and node.js
 
 **Note:** 
 * DBConnection.js is the file used for database connections.Commands to start application: for customer view - node bamazonCustomer.js and   Manager view - node bamazonManager.js. Find databse queries in schema.sql.
-* Attached word document "Screenshots.docx" with screenshots.
+* Please refer word document "Screenshots.docx" for screenshots.
