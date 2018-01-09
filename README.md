@@ -22,4 +22,6 @@ Amazon-like storefront with the MySQL and node.js
 4. If a manager selects Add to Inventory, app displays a prompt that will let the manager "add more" of any item      currently in the store.
 5. If a manager selects Add New Product, it allows the manager to add a completely new product to the store.
 
-**Note:** DBConnection.js is the file used for database connections.Commands to start application: for customer view - node bamazonCustomer.js and Manager view - node bamazonManager.js. Find databse queries in schema.sql.
+**Note:** 
+* DBConnection.js is the file used for database connections.Commands to start application: for customer view - node bamazonCustomer.js and   Manager view - node bamazonManager.js. Find databse queries in schema.sql.
+* Attached word document "Screenshots.docx" with screenshots.
