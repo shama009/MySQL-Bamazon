@@ -1,5 +1,6 @@
 var connection = require("./DBConnection");
 var inquirer = require("inquirer");
+require("console.table");
 
 connection.connect(function (err) {
     if (err) throw err;
@@ -11,9 +12,7 @@ function displayProductsForSale() {
     var query = "Select item_id, product_name, price FROM products WHERE stock_quantity > 0";
     connection.query(query, function (err, result) {
         if (err) throw err;
-        for (var i = 0; i < result.length; i++) {
-            console.log("Item_ID: " + result[i].item_id + " || Product: " + result[i].product_name + " || Price: " + result[i].price);
-        }
+        console.table(result);
         buyProducts();
     });
 }

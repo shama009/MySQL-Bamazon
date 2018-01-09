@@ -1,5 +1,6 @@
 var connection = require("./DBConnection");
 var inquirer = require("inquirer");
+require("console.table");
 
 connection.connect(function (err) {
     if (err) throw err;
@@ -45,9 +46,7 @@ function viewProducts() {
     var query = "Select item_id, product_name, price, stock_quantity FROM products";
     connection.query(query, function (err, result) {
         if (err) throw err;
-        for (var i = 0; i < result.length; i++) {
-            console.log("Item_ID: " + result[i].item_id + " || Product: " + result[i].product_name + " || Price: " + result[i].price + " || Quantity: " + result[i].stock_quantity);
-        }
+        console.table(result);
         connection.end();
     });
 }
@@ -56,9 +55,12 @@ function viewLowInventory() {
     var query = "Select item_id, product_name, price, stock_quantity FROM products WHERE stock_quantity < 5";
     connection.query(query, function (err, result) {
         if (err) throw err;
-        for (var i = 0; i < result.length; i++) {
-            console.log("Item_ID: " + result[i].item_id + " || Product: " + result[i].product_name + " || Price: " + result[i].price + " || Quantity: " + result[i].stock_quantity);
+        if (result.length !=0) {
+            console.table(result);
+        } else{
+            console.log("There is no low inventory on any product. Sufficient stock is available!");
         }
+        
         connection.end();
     });
 }
@@ -129,6 +131,7 @@ function addProduct() {
             }, function (err, res) {
                 if (err) throw err;
                 console.log("New Product added!");
+                connection.end();
             });
 
         });

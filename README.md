@@ -11,4 +11,4 @@ Amazon-like storefront with the MySQL and node.js
     * if available, customer's order is executed, stock quantity is updated in database accourdingly and displays    the total cost of purchase.
     * if not available, logs a phrase "Insufficient quantity!", and then prevent the order from going through.
 
-
+Note: DBConnection.js is the file used for database connections.Commands to start application: for customer view - node bamazonCustomer.js and Manager view - node bamazonManager.js

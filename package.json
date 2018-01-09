@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/shama009/MySQL-Bamazon#readme",
   "dependencies": {
+    "console.table": "^0.9.1",
     "inquirer": "^4.0.2",
     "mysql": "^2.15.0"
   }
