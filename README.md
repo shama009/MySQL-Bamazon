@@ -1,5 +1,5 @@
 # MySQL-Bamazon
-Amazon-like storefront with the MySQL and node.js
+Amazon-like storefront with the MySQL and node.js. This is a command line App.
 
 **Requirements:** 
 1. Save and require the Inquirer, MySQL and console.table npm packages for data input and storage. Use "npm install" command to use npm packages.
